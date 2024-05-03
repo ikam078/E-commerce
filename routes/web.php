@@ -19,7 +19,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/category', CategoryController::class)->except(['show', 'edit']);
 });
-
+    
 Route::name('user.')->prefix('user')->middleware('user')->group(function() {
     Route::get('/dashboard', [\App\Http\Controllers\user\DashboadController::class, 'index'])->name('dashboard');
 });

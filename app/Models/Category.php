@@ -9,7 +9,7 @@ class Category extends Model
 {
     use HasFactory;
 
-    protected $faillable = [
+    protected $fillable = [
         'name',
         'slug',
         'image'
