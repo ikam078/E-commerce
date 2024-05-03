@@ -132,7 +132,7 @@
     </script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
+    <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
 
 </body>
 
