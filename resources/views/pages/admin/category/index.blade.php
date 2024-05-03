@@ -43,11 +43,14 @@
                                 <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="w-25">
                             </td>
                             <td>
-                                <button class="btn btn-warning">
+                                <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <form action="#" method="post" class="d-inline">
-                                    <button class="btn btn-danger">
+                                @include('pages.admin.category.modal-edit')
+                                <form action="{{ route('admin.category.destroy', $row->id) }}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
