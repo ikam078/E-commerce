@@ -5,30 +5,31 @@
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Category</h5>
+            <h5 class="card-title">Product</h5>
 
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Product</a></li>
-                    <li class="breadcrumb-item active">Data Category</li>
+                    <li class="breadcrumb-item active">Data Product</li>
                 </ol>
             </nav>
 
-            {{-- button modal --}}
-            <!-- create product -->
+            <div class="d-flex justify-content-end">
+                {{-- Button Modal Create Product --}}
             <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
                 <i class="bi bi-plus"></i>
-                Add Product
+                Create Product
             </a>
-            <!-- End Basic Modal-->
+            </div>
 
             <table class="table datatable">
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>No.</th>
                         <th>Name</th>
-                        <th>Image</th>
+                        <th>Category</th>
+                        <th>Price</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -37,20 +38,16 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
+                            <td>{{ $row->category->name }}</td>
+                            <td>{{ $row->price }}</td>
                             <td>
-                                <img src="{{ url('storage/product/', $row->image) }}" alt="{{ $row->name }}"
-                                    class="w-25">
-                            </td>
-                            <td>
-                                <button class="btn btn-warning" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#editModalCategory{{ $row->id }}">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <form action="{{ route('admin.product.destroy', $row->id) }}" method="post"
-                                    class="d-inline">
+                                <a href="{{ route('admin.product.edit', $row->id) }}" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i>
+                                </a>
+                                <form action="{{ route('admin.product.destroy', $row->id) }}" method="post" class="d-inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
+                                    <button class="btn btn-danger" type="submit">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -58,7 +55,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">Data is empty</td>
+                            <td colspan="4" class="text-center">Data Is Empty</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -66,3 +63,30 @@
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script type="text/javascript">
+        ;
+
+        (function($) {
+            function readURL(input) {
+                var $prev = $('preview-image')
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader()
+
+                    reader.onload = function(e) {
+                        $prev.attr('src', e.target.result)
+                    }
+
+                    reader.readAsDataURL(input.files[0])
+                    $prev.attr('class', '')
+                } else {
+                    $prev.attr('class', 'visually-hidden')
+                }
+            }
+
+            $('#image').on('change', function() {readURL(this)})
+        })(jQuery)
+    </script>
+@endpush

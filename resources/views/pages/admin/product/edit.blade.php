@@ -1,48 +1,52 @@
+
 @extends('layouts.parent')
 
-@section('title', 'Product - Create')
+@section('title', 'Product - Edit')
 
 @section('content')
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Create Product</h5>
+            <h5 class="card-title">Edit Product</h5>
 
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.product.index') }}">Product</a></li>
-                    <li class="breadcrumb-item active"><a href="{{ route('admin.product.index') }}">Data Product</a></li>
-                    <li class="breadcrumb-item active">Create Product</li>
+                    <li class="breadcrumb-item"><a href="#">Product</a></li>
+                    <li class="breadcrumb-item"><a href="#">Data Product</a></li>
+                    <li class="breadcrumb-item active">Edit Product</li>
 
                 </ol>
             </nav>
 
-            <form action="{{ route('admin.product.store') }}" method="post">
+            <form action="{{ route('admin.product.update', $product->id) }}" method="post">
                 @csrf
-                @method('POST')
+                @method('PUT')
 
                 <div class="col-12">
                     <label for="productName" class="form-label">Product Name</label>
-                    <input type="text" class="form-control" id="productName" name="name" value="{{ old('name') }}">
+                    <input type="text" class="form-control" id="productName" name="name" value="{{ $product->name }}">
                 </div>
                 <div class="col-12">
                     <label class="col-sm-2 col-form-label">Category</label>
                     <div class="col-12">
                         <select class="form-select" aria-label="Default select example" name="category_id">
-                            <option selected>== Categoy ==</option>
                             @foreach ($category as $row)
-                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                @if ($product->category_id == $row->id)
+                                    <option selected value="{{ $row->id }}">{{ $row->name }}</option>
+                                @else
+                                    <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                @endif
                             @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="col-12">
                     <label for="productPrice" class="form-label">Product Price</label>
-                    <input type="text" class="form-control" id="productPrice" name="price" value="{{ old('price') }}">
+                    <input type="text" class="form-control" id="productPrice" name="price" value="{{ $product->price }}">
                 </div>
                 <div class="col-12">
                     <label for="productDescription" class="form-label">Description</label>
-                    <textarea class="form-control" aria-label="With textarea" id="productDescription" name="description">{{ old('description') }}</textarea>
+                    <textarea class="form-control" aria-label="With textarea" id="productDescription" name="description">{{ $product->description }}</textarea>
                 </div>
                 <div class="mt-4">
                     <a href="{{ route('admin.product.index') }}" class="btn btn-secondary"

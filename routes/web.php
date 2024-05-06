@@ -1,12 +1,13 @@
+
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\user\DashboadController;
-use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,14 +15,17 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::name('admin.')->prefix('admin')->middleware('admin')->group(function() {
+Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
-    Route::resource('/category', CategoryController::class)->except(['show', 'edit']);
-    Route::resource('/product', ProductController::class)->except(['show', 'edit']);
+    Route::resource('/category', CategoryController::class)->except(['show', 'create', 'edit']);
+    Route::resource('/product', ProductController::class);
+    Route::prefix('/product')->name('product.')->group(function(){
+        Route::resource('/gallery', ProductGalleryController::class);
+    });
 });
-    
-Route::name('user.')->prefix('user')->middleware('user')->group(function() {
-    Route::get('/dashboard', [\App\Http\Controllers\user\DashboadController::class, 'index'])->name('dashboard');
+
+Route::name('user.')->prefix('user')->middleware('user')->group(function () {
+    Route::get('/dashboard', [\App\Http\Controllers\User\DashboadController::class, 'index'])->name('dashboard');
 });
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
