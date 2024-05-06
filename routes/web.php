@@ -19,9 +19,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/category', CategoryController::class)->except(['show', 'create', 'edit']);
     Route::resource('/product', ProductController::class);
-    Route::prefix('/product')->name('product.')->group(function(){
-        Route::resource('/gallery', ProductGalleryController::class);
-    });
+    Route::resource('/product.gallery', ProductGalleryController::class);
 });
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function () {

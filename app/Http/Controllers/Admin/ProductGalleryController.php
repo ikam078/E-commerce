@@ -2,17 +2,25 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $gallery = $product->product_galleries;
+
+        return view('pages.admin.product.gallery.index', compact(
+            'product',
+            'gallery'
+        ));
+        
     }
 
     /**

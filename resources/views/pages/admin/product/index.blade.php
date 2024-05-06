@@ -17,10 +17,10 @@
 
             <div class="d-flex justify-content-end">
                 {{-- Button Modal Create Product --}}
-            <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
-                <i class="bi bi-plus"></i>
-                Create Product
-            </a>
+                <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
+                    <i class="bi bi-plus"></i>
+                    Create Product
+                </a>
             </div>
 
             <table class="table datatable">
@@ -41,10 +41,14 @@
                             <td>{{ $row->category->name }}</td>
                             <td>{{ $row->price }}</td>
                             <td>
-                                <a href="{{ route('admin.product.edit', $row->id) }}" class="btn btn-warning">
-                                <i class="bi bi-pencil"></i>
+                                <a href="{{ route('admin.product.gallery.index', $row->id) }}" class="btn btn-primary">
+                                    <i class="bi bi-file-image"></i>
                                 </a>
-                                <form action="{{ route('admin.product.destroy', $row->id) }}" method="post" class="d-inline">
+                                <a href="{{ route('admin.product.edit', $row->id) }}" class="btn btn-warning">
+                                    <i class="bi bi-pencil"></i>
+                                </a>
+                                <form action="{{ route('admin.product.destroy', $row->id) }}" method="post"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">
@@ -86,7 +90,9 @@
                 }
             }
 
-            $('#image').on('change', function() {readURL(this)})
+            $('#image').on('change', function() {
+                readURL(this)
+            })
         })(jQuery)
     </script>
 @endpush
