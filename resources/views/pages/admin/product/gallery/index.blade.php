@@ -14,7 +14,13 @@
                     <li class="breadcrumb-item active">Data Product Gallery</li>
                 </ol>
             </nav>
-            <a href="#" class="btn btn-primary"><i class="bi bi-plus">Add Gallery</i></a>
+            <div class="d-flex justify-content-end">
+                <a href="#" class="btn btn-primary">
+                    <i class="bi bi-plus">
+                        Add Gallery
+                    </i>
+                </a>
+            </div>
 
             <table class="table">
                 <thead>
