@@ -11,30 +11,31 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="{{ route('admin.product.index') }}">Product</a></li>
-                    <li class="breadcrumb-item active">Data Product Gallery</li>
+                    <li class="breadcrumb-item active"><a href="#"></a>Data Product Gallery</li>
+                    <li class="breadcrumb-item active">Product Gallery</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-end">
-                <a href="#" class="btn btn-primary">
-                    <i class="bi bi-plus">
-                        Add Gallery
-                    </i>
-                </a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal">
+                    <i class="bi bi-plus">Product Gallery</i>
+                </button>
+                
+                @include('pages.admin.product.gallery.modal-create')
             </div>
 
             <table class="table">
                 <thead>
                     <tr>
-                        <td>No</td>
-                        <td>Image</td>
-                        <td>Action</td>
+                        <th>No</th>
+                        <th>Image</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>1</th>
-                        <th>Gambar</th>
-                        <th>Action</th>
+                        <td>1</td>
+                        <td>Gambar</td>
+                        <td>Action</td>
                     </tr>
                 </tbody>
             </table>
