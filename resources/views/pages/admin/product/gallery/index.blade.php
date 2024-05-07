@@ -32,11 +32,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Gambar</td>
-                        <td>Action</td>
-                    </tr>
+                    @forelse ($product->product_galleries as $row)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <img src="{{ asset('storage/product/gallery/') }}" alt="">
+                            </td>
+                            <td>
+                                
+                            </td>
+                        </tr>
+                    @empty
+                        
+                    @endforelse
                 </tbody>
             </table>
         </div>
