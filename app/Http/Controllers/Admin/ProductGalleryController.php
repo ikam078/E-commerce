@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ProductGallery;
 use Illuminate\Support\Facades\Storage;
 
 class ProductGalleryController extends Controller
@@ -91,15 +92,20 @@ class ProductGalleryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, Product $product)
+    public function destroy(Product $product, ProductGallery $gallery)
     {
         try {
-            // get gallery by id
-            $gallery = $product->product_galleries()->findOrFail($id);
+            
+            // get data product
+            $product = $product->findOrFail($product->id);
 
-            Storage::delete('public/product/gallery/' . basename($gallery->image));
+            // get data gallery
+            $gallery = $gallery->findOrFail($gallery->id);
 
-            //delete image from storage
+            // delete image
+            Storage::disk('local')->delete('public/product/gallery/' . basename($gallery->image));
+
+            // delete database gallery
             $gallery->delete();
 
             return redirect()->route('admin.product.gallery.index', $product->id)->with('success', 'Image deleted successfully');
