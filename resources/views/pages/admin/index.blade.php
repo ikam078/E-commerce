@@ -3,38 +3,86 @@
 @section('title', 'Dashboard - Admin')
 
 @section('content')
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Dashboard</h5>
+    <div class="section dashboard">
+        <div class="col-xl-12">
 
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house-door"></i></a></li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+            <div class="card info-card customers-card">
 
-    <div class="row">
-        <div class="col-md-4">
-            <!-- Sales Card -->
-            <div class="card info-card sales-card">
                 <div class="card-body">
-                    <h5 class="card-title">Sales <span>| Today</span></h5>
+                    <h5 class="card-title">Customers <span>| This Year</span></h5>
 
                     <div class="d-flex align-items-center">
                         <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="bi bi-cart"></i>
+                            <i class="bi bi-people"></i>
                         </div>
                         <div class="ps-3">
-                            <h6>145</h6>
-                            <span class="text-success small pt-1 fw-bold">12%</span> <span
-                                class="text-muted small pt-2 ps-1">increase</span>
+                            <h6</h6>
+                            <span class="text-danger small pt-1 fw-bold">12%</span> <span
+                                class="text-muted small pt-2 ps-1">decrease</span>
 
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section dashboard">
+        <div class="row">
+
+            <!-- Category Card -->
+            <div class="col-md-4">
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Category</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ $category }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Product Card -->
+            <div class="col-md-4">
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Product</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart-check-fill"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ $product }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Card -->
+            <div class="col-md-4">
+                <div class="card info-card sales-card">
+                    <div class="card-body">
+                        <h5 class="card-title">User</h5>
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-file-earmark-person-fill"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ $user }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
