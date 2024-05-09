@@ -33,12 +33,12 @@ class ProfileController extends Controller
                 // Memperbarui kata sandi
                 $user->password = Hash::make($request->password);
                 $user->save();
-                return redirect()->back()->with('success', 'password changed successfully! 😋');
+                return redirect()->back()->with('success', 'password changed successfully!');
             } else {
-                return redirect()->back()->with('error', 'Password does not match! 😭');
+                return redirect()->back()->with('error', 'Password does not match!');
             }
         } else {
-            return redirect()->back()->with('error', 'Current password is incorrect! 😠');
+            return redirect()->back()->with('error', 'Current password is incorrect!');
         }
     }
 }
