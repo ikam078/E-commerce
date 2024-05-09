@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class MyTransactionController extends Controller
 {
@@ -12,7 +13,12 @@ class MyTransactionController extends Controller
      */
     public function index()
     {
-        return view('pages.admin.my-transaction.index');
+        // get data my
+        $myTransaction = Transaction::with(['user'])
+        ->where('user_id', auth()->user()->id)->get();
+        return view('pages.admin.my-transaction.index', compact(
+            'myTransaction'
+        ));
     }
 
     /**

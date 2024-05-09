@@ -127,11 +127,11 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
+                                                    data-bs-dismiss="modal">Cancel</button>
                                                 <form action="{{ route('admin.resetpassword', $row->id) }}" method="post">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button type="submit" class="btn btn-success">Reset <i
+                                                    <button type="submit" class="btn btn-success">Reset<i
                                                             class="bi bi-check-circle me-1"></i></button>
                                                 </form>
                                             </div>
