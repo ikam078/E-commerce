@@ -15,8 +15,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+    Route::put('/reset-password/{id}',[\App\Http\Controllers\Admin\DashboardController::class, 'resetpassword'])->name('resetpassword');
     Route::resource('/category', CategoryController::class)->except(['show', 'create', 'edit']);
     Route::resource('/product', ProductController::class);
     Route::resource('/product.gallery', ProductGalleryController::class)->except('create', 'show', 'edit', 'update');
@@ -26,4 +28,7 @@ Route::name('user.')->prefix('user')->middleware('user')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\User\DashboadController::class, 'index'])->name('dashboard');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware('auth')->group(function () {
+    Route::get('/change-password',[\App\Http\Controllers\Profile\ProfileController::class, 'changePassword'])->name('profile.change-password');
+    Route::put('/update-password',[\App\Http\Controllers\Profile\ProfileController::class, 'updatePassword'])->name('profile.update-password');
+});
