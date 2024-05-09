@@ -33,7 +33,7 @@
             </a>
             <ul id="components-transaction" class="nav-content collapse {{ request()->routeIs('admin.transaction', 'admin.my-transaction.') ? 'show' : '' }}" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="{{ route('admin.transaction.index') }}" class="{{ request()->routeIs('admin.transaction.index') ? 'active' : '' }}">
+                    <a href="{{ route('admin.transaction.index') }}" class="{{ request()->routeIs('admin.transaction.index.') ? 'active' : '' }}">
                         <i class="bi bi-circle"></i><span>Transaction</span>
                     </a>
                 </li>

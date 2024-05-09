@@ -25,7 +25,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/product', ProductController::class);
     Route::resource('/product.gallery', ProductGalleryController::class)->except('create', 'show', 'edit', 'update');
     Route::resource('/transaction', TransactionController::class);
-    Route::resource('/my-transaction', MyTransactionController::class);
+    Route::resource('/my-transaction', MyTransactionController::class)->only('index', 'show');
 });
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function () {
