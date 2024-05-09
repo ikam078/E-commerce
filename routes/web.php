@@ -30,6 +30,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\User\DashboadController::class, 'index'])->name('dashboard');
+    Route::resource('/my-transaction', MyTransactionController::class)->only(['index', 'show']);
 });
 
 Route::middleware('auth')->group(function () {
