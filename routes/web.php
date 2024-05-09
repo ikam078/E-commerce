@@ -7,7 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\MyTransactionController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +24,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::resource('/category', CategoryController::class)->except(['show', 'create', 'edit']);
     Route::resource('/product', ProductController::class);
     Route::resource('/product.gallery', ProductGalleryController::class)->except('create', 'show', 'edit', 'update');
+    Route::resource('/transaction', TransactionController::class);
+    Route::resource('/my-transaction', MyTransactionController::class);
 });
 
 Route::name('user.')->prefix('user')->middleware('user')->group(function () {
