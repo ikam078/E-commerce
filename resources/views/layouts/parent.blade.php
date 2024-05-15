@@ -33,17 +33,19 @@
 
     <!-- =======================================================
   * Template Name: NiceAdmin
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Updated: Jan 09 2024 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
 
     <!-- ======= Header ======= -->
     @include('layouts.include.navbar')
+    <!-- End Header -->
+
     <!-- ======= Sidebar ======= -->
     @if (Auth::user()->role == 'admin')
         @include('layouts.include.sidebar.admin')
@@ -52,29 +54,25 @@
     @endif
     <!-- End Sidebar-->
 
-    <main id="main"  class="main">
+    <main id="main" class="main">
 
-        {{-- handle errors --}}
         @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">Ther's something wrong!</h4>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h4 class="aletr-heading">There's something worng!</h4>
+            </div>
             <hr>
             <p>
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
             </p>
-        </div>
         @endif
-        
+
         @yield('content')
 
-    </main>
-    <!-- End #main -->
-
-    
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     @include('layouts.include.footer')
@@ -92,6 +90,7 @@
     <script src="{{ asset('dashboard/assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
     <script src="{{ asset('dashboard/assets/vendor/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('dashboard/assets/vendor/php-email-form/validate.js') }}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     <script>
         //sweetalert for success or error message
@@ -133,6 +132,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
+
 
 </body>
 

@@ -6,7 +6,6 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Product</h5>
-
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
@@ -16,19 +15,19 @@
             </nav>
 
             <div class="d-flex justify-content-end">
-                {{-- Button Modal Create Product --}}
-                <a href="{{ route('admin.product.create') }}" class="btn btn-primary">
+                <a href="{{ route('admin.product.create') }}" class="btn btn-primary m-2">
+                    Add Product
                     <i class="bi bi-plus"></i>
-                    Create Product
                 </a>
             </div>
 
             <table class="table datatable">
                 <thead>
                     <tr>
-                        <th>No.</th>
+                        <th>No</th>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Description</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -39,10 +38,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->category->name }}</td>
-                            <td>{{ $row->price }}</td>
-                            <td>
-                                <a href="{{ route('admin.product.gallery.index', $row->id) }}" class="btn btn-primary">
-                                    <i class="bi bi-file-image"></i>
+                            <td>{{ $row->description }}</td>
+                            <td>RP.{{ $row->price }}</td>
+                            <td><a href="{{ route('admin.product.gallery.index', $row->id) }}" class="btn btn-info">
+                                    <i class="bi bi-card-image"></i>
                                 </a>
                                 <a href="{{ route('admin.product.edit', $row->id) }}" class="btn btn-warning">
                                     <i class="bi bi-pencil"></i>
@@ -59,7 +58,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">Data Is Empty</td>
+                            <td colspan="6" class="text-center"> Data is Empty</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -67,32 +66,3 @@
         </div>
     </div>
 @endsection
-
-@push('script')
-    <script type="text/javascript">
-        ;
-
-        (function($) {
-            function readURL(input) {
-                var $prev = $('preview-image')
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader()
-
-                    reader.onload = function(e) {
-                        $prev.attr('src', e.target.result)
-                    }
-
-                    reader.readAsDataURL(input.files[0])
-                    $prev.attr('class', '')
-                } else {
-                    $prev.attr('class', 'visually-hidden')
-                }
-            }
-
-            $('#image').on('change', function() {
-                readURL(this)
-            })
-        })(jQuery)
-    </script>
-@endpush

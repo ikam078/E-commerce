@@ -6,13 +6,13 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">My Transation</h5>
+            <h5 class="card-title">My Transaction</h5>
 
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Transaction</a></li>
-                    <li class="breadcrumb-item active">My Transaction</li>
+                    <li class="breadcrumb-item active">MyTransaction</li>
                 </ol>
             </nav>
         </div>
@@ -20,31 +20,29 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="card-title">
-                <i class="bi bi-cash-coin"> List Transaction</i>
-            </div>
+            <div class="card-title"><i class="bi bi-cart"></i> List Transaction </div>
 
-            <table class="table table-striped table-hover table-bordered data-table">
+            <table class="table table-striped table-hover table-bordered datatable">
                 <thead>
                     <tr>
-                        <th>No</th>
-                        <th>Name Account</th>
-                        <th>Reciver Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Total</th>
-                        <th>Action</th>
+                        <td>No</td>
+                        <td>Name Account</td>
+                        <td>Reciever Name</td>
+                        <td>Email</td>
+                        <td>Phone</td>
+                        <td>Total Price</td>
+                        <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($myTransaction as $row)
+                    @forelse ($myTransaction as $row )
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ auth()->user()->name }}</td>
-                        <td>{{ $row->name }}</td>
-                        <td>{{ $row->email }}</td>
-                        <td>{{ $row->phone }}</td>
-                        <td>{{ $row->price }}</td>
+                        <td>{{ $row->user->name }}</td>
+                        <td>{{ $row->user->email }}</td>
+                        <td>{{ $row->user->phone }}</td>
+                        <td>{{  }}</td>
                         <td>Show</td>
                     </tr>
                     @empty
@@ -54,4 +52,5 @@
             </table>
         </div>
     </div>
+
 @endsection
