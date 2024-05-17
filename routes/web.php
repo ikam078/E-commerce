@@ -5,10 +5,12 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProducGalleryController;
 use App\Http\Controllers\Admin\ProductController;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [App\Http\Controllers\FrontEnd\FrontEndController::class, 'index']);
+Route::get('/detail-product/{slug}', [\App\Http\Controllers\FrontEnd\FrontEndController::class, 'detailProduct'])->name('detail.Product');
+Route::get('/detail-category/{slug}', [\App\Http\Controllers\FrontEnd\FrontEndController::class, 'detailCategory'])->name('detail.category');
 
 Auth::routes();
 

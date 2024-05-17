@@ -70,7 +70,7 @@
                         <h5 class="card-title">User</h5>
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-file-person-fill"></i>
+                                <i class="ri-user-settings-fill"></i>
                             </div>
                             <div class="ps-3">
                                 <h6>{{ $user }}</h6>

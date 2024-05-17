@@ -4,7 +4,7 @@
 
         <li class="nav-item">
             <a class="nav-link " href="{{ route('admin.dashboard') }}">
-                <i class="bi bi-grid"></i>
+                <i class="bi bi-grid-1x2-fill"></i>
                 <span>Dashboard</span>
             </a>
         </li><!-- End Dashboard Nav -->
@@ -12,7 +12,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.category.*', 'admin.product.*', 'admin.product.gallery.*') ? '' : 'collapsed' }} " data-bs-target="#components-nav" data-bs-toggle="collapse"
                 href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Product</span><i
+                <i class="bi bi-basket3-fill"></i><span>Product</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse {{ request()->routeIs('admin.category.*', 'admin.product.*', 'admin.product.gallery.*') ? 'show' : '' }} " data-bs-parent="#sidebar-nav">
@@ -32,7 +32,7 @@
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.transaction.*', 'admin.my-transaction.*') ? '' : 'collapsed' }} " data-bs-target="#components-transaction" data-bs-toggle="collapse"
                 href="#">
-                <i class="bi bi-menu-button-wide"></i><span>my-transaction</span><i
+                <i class="bi bi-credit-card-fill"></i><span>My Transaction</span><i
                     class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-transaction" class="nav-content collapse {{ request()->routeIs('admin.transaction.index', 'admin.my-transaction.index') ? 'show' : '' }} " data-bs-parent="#sidebar-nav">

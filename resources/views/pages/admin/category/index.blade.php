@@ -17,10 +17,13 @@
             </nav>
 
             {{-- button modal create category --}}
-            <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#createModalCategory">
-                Add Category
-                <i class="bi bi-plus"></i>
-            </button>
+            <div class="justify-content-end d-flex">
+                <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal"
+                    data-bs-target="#createModalCategory">
+                    <i class="bi bi-plus"></i>
+                    Add Category
+                </button>
+            </div>
 
             @include('pages.admin.category.modal-create')
 
@@ -40,13 +43,16 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
                             <td>
-                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="img-thumbnail" width="250">
+                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}"
+                                    class="img-thumbnail" width="250">
                             </td>
-                            <td><button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">
+                            <td><button class="btn btn-warning" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#editModalCategory{{ $row->id }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
                                 @include('pages.admin.category.modal-edit')
-                                <form action="{{ route('admin.category.destroy', $row->id) }}" method="post" class="d-inline">
+                                <form action="{{ route('admin.category.destroy', $row->id) }}" method="post"
+                                    class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" type="submit">
@@ -70,27 +76,28 @@
 
 @push('script')
     <script type="text/javascript">
-    ;(function($){
-        function readURL(input){
-            var $prev = $('#preview-logo');
+        ;
+        (function($) {
+            function readURL(input) {
+                var $prev = $('#preview-logo');
 
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
 
-            reader.onload = function(e){
-                $prev.attr('src', e.target.result);
+                    reader.onload = function(e) {
+                        $prev.attr('src', e.target.result);
+                    }
+
+                    reader.readAsDataURL(input.files[0]);
+                    $prev.attr('class', '')
+                } else {
+                    $prev.attr('class', 'visually-hidden')
+                }
             }
 
-            reader.readAsDataURL(input.files[0]);
-            $prev.attr('class', '')
-        } else{
-            $prev.attr('class', 'visually-hidden')
-        }
-        }
-
-        $('#image').on('change', function(){
-            readURL(this);
-        });
-    })(jQuery);
+            $('#image').on('change', function() {
+                readURL(this);
+            });
+        })(jQuery);
     </script>
 @endpush

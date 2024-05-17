@@ -133,7 +133,6 @@
     <!-- Template Main JS File -->
     <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
 
-
 </body>
 
 </html>

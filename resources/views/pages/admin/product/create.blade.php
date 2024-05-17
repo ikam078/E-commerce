@@ -31,7 +31,7 @@
                 <label class="col col-form-label">Select</label>
                 <div class="col ">
                     <select class="form-select" aria-label="Default select example" name="category_id">
-                        <option selected>===== Choose Category =====</option>
+                        <option class="text-center" selected>===== Choose Category =====</option>
                         @foreach ($category as $row)
                             <option value="{{ $row->id }}">{{ $row->name }}</option>
                         @endforeach
