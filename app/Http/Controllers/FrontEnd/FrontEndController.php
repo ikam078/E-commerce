@@ -35,9 +35,10 @@ class FrontEndController extends Controller
     {
         $category = Category::select('id', 'name', 'slug')->latest()->get();
         $categories = Category::where('slug', $slug)->first();
+        $product = Product::with('product_galleries')->where('category_id', $category->id)->latest()->get();
 
         return view('pages.frontend.detail-category', compact(
-            'category', 'categories'
+            'category', 'categories', 'product'
         ));
     }
 }

@@ -9,6 +9,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
+        {{-- product --}}
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.category.*', 'admin.product.*', 'admin.product.gallery.*') ? '' : 'collapsed' }} " data-bs-target="#components-nav" data-bs-toggle="collapse"
                 href="#">
@@ -29,6 +30,7 @@
             </ul>
         </li><!-- End Components Nav -->
 
+        {{-- transaction --}}
         <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.transaction.*', 'admin.my-transaction.*') ? '' : 'collapsed' }} " data-bs-target="#components-transaction" data-bs-toggle="collapse"
                 href="#">
@@ -44,6 +46,22 @@
                 <li>
                     <a href="{{ route('admin.my-transaction.index') }}" class="{{ request()->routeIs('admin.my-transaction.index') ? 'active' : '' }}" >
                         <i class="bi bi-circle"></i><span>My Transaction</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+
+        {{-- user --}}
+        <li class="nav-item">
+            <a class="nav-link {{ request()->routeIs('admin.transaction.*', 'admin.my-transaction.*') ? '' : 'collapsed' }} " data-bs-target="#components-transaction" data-bs-toggle="collapse"
+                href="#">
+                <i class="ri-user-settings-line"></i><span>Users</span><i
+                    class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-transaction" class="nav-content collapse {{ request()->routeIs('admin.transaction.index', 'admin.my-transaction.index') ? 'show' : '' }} " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('admin.transaction.index') }}" class="{{ request()->routeIs('admin.transaction.index') ? 'active' : '' }}">
+                        <i class="bi bi-circle"></i><span>All User</span>
                     </a>
                 </li>
             </ul>

@@ -8,7 +8,7 @@
         <!-- Customers Card -->
         <div class="card info-card customers-card">
             <div class="card-body">
-                <h5 class="card-title">Dashboard <span class="badge bg-info text-dark"><i class="bi bi-info-circle me-1"></i> | {{ Auth::user()->role }}</span></h5>
+                <h5 class="card-title">Dashboard <span class="badge bg-success text-dark"><i class="bi bi-check-circle me-1"></i> | {{ Auth::user()->role }}</span></h5>
 
                 <div class="d-flex align-items-center">
                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
@@ -70,7 +70,7 @@
                         <h5 class="card-title">User</h5>
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="ri-user-settings-fill"></i>
+                                <i class="bi bi-people-fill"></i>
                             </div>
                             <div class="ps-3">
                                 <h6>{{ $user }}</h6>

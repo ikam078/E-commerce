@@ -1,7 +1,6 @@
 @extends('pages.frontend.parent.parent')
 
 @section('content')
-    <!-- START: BREADCRUMB -->
     <section class="bg-gray-100 py-8 px-4">
         <div class="container mx-auto">
             <ul class="breadcrumb">
@@ -17,7 +16,6 @@
             </ul>
         </div>
     </section>
-    <!-- END: BREADCRUMB -->
 
     <!-- START: DETAILS -->
     <section class="container mx-auto">
