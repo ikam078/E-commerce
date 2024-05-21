@@ -92,7 +92,7 @@
                                     class="w-full h-full object-cover object-center" />
                             </div>
                             <h5 class="text-lg font-semibold mt-4">{{ $row->name }}</h5>
-                            <span class="">IDR {{ number_format($product->price) }}</span>
+                            <span class="">IDR {{ number_format($row->price) }}</span>
                             <a href="{{ route('detail.Product', $row->slug) }}" class="stretched-link">
                                 <!-- fake4 children -->
                             </a>

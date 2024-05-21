@@ -22,8 +22,8 @@
                     Complete your room <br class="" />with what we designed
                 </h3>
             </div>
-            <div class="flex overflow-x-auto mb-4 -mx-3">
-                @foreach ($categories as $row)
+            <div class="flex overflow-x-auto flex-wrap mb-4 -mx-3">
+                @foreach ($product as $row)
                     <div class="px-3 flex-none" style="width: 320px">
                         <div class="rounded-xl p-4 pb-8 relative bg-white">
                             <div class="rounded-xl overflow-hidden card-shadow w-full h-36">
@@ -31,7 +31,7 @@
                                     alt="" class="w-full h-full object-cover object-center" />
                             </div>
                             <h5 class="text-lg font-semibold mt-4">{{ $row->name }}</h5>
-                            <span class="">IDR {{ number_format($product->price) }}</span>
+                            <span class="">IDR {{ number_format($row->price) }}</span>
                             <a href="{{ route('detail.Product', $row->slug) }}" class="stretched-link">
                                 <!-- fake4 children -->
                             </a>
