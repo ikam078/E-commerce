@@ -25,8 +25,8 @@
                             <form action="{{ route('admin.resetPassword', $u->id)  }}" method="post">
                                 @csrf
                                 @method('PUT')
-                                <button type="submit" class="btn btn-success">
-                                    <i class="bi bi-pencil"></i>
+                                <button type="submit" class="btn btn-warning">
+                                    <i class="ri-shield-keyhole-line"></i>
                                     Reset Password</button>
                             </form>
                         </td>

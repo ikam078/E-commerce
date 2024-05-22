@@ -52,7 +52,7 @@
         </li><!-- End Components Nav -->
 
         {{-- user --}}
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link {{ request()->routeIs('admin.transaction.*', 'admin.my-transaction.*') ? '' : 'collapsed' }} " data-bs-target="#components-transaction" data-bs-toggle="collapse"
                 href="#">
                 <i class="ri-user-settings-line"></i><span>Users</span><i
@@ -65,7 +65,7 @@
                     </a>
                 </li>
             </ul>
-        </li><!-- End Components Nav -->
+        </li> --}}
 
     </ul>
 
