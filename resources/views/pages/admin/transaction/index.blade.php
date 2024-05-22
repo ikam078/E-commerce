@@ -1,6 +1,6 @@
 @extends('layouts.parent')
 
-@section('title', 'My Transaction')
+@section('title', 'Transaction')
 
 @section('content')
 
@@ -12,7 +12,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     <li class="breadcrumb-item"><a href="#">Transaction</a></li>
-                    <li class="breadcrumb-item active">MyTransaction</li>
+                    <li class="breadcrumb-item active">Transaction</li>
                 </ol>
             </nav>
         </div>
@@ -31,11 +31,12 @@
                         <td>Email</td>
                         <td>Phone</td>
                         <td>Total Price</td>
+                        <td>Status</td>
                         <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($myTransaction as $row)
+                    @forelse ($transaction as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ auth()->user()->name }}</td>
@@ -43,6 +44,7 @@
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->total_price }}</td>
+                            <td>{{ $row->status }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">
