@@ -10,6 +10,8 @@ use App\Models\Transaction;
 use App\Models\TransactionItem;
 use Exception;
 use Illuminate\Http\Request;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class FrontEndController extends Controller
 {
@@ -91,34 +93,70 @@ class FrontEndController extends Controller
     public function checkout(Request $request)
     {
         try {
-        //    request data
-        $data = $request->all();
+            //    request data
+            $data = $request->all();
 
-        // get data cart user
-        $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
-        // dd($cart);
+            // get data cart user
+            $cart = Cart::with('product')->where('user_id', auth()->user()->id)->get();
+            // dd($cart);
 
-        // create transaction
-        $transaction = Transaction::create([
-            'user_id' => auth()->user()->id,
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'address' => $data['address'],
-            'phone' => $data['phone'],
-            'total_price' => $cart->sum('product.price')
-        ]);
-
-        // cerate transactionn item
-        foreach ($cart as $item) {
-            Transaction::create([
+            // create transaction
+            $transaction = Transaction::create([
                 'user_id' => auth()->user()->id,
-                'product_id' => $item->product_id,
-                'transaction_id' => $transaction->id
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'address' => $data['address'],
+                'phone' => $data['phone'],
+                'total_price' => $cart->sum('product.price')
             ]);
-        }
 
-        } catch (Exception $e) {
-            // dd($e->getMessage());
+            // cerate transactionn item
+            foreach ($cart as $item) {
+                TransactionItem::create([
+                    'user_id' => auth()->user()->id,
+                    'product_id' => $item->product_id,
+                    'transaction_id' => $transaction->id
+                ]);
+            }
+
+            // delete cart
+            Cart::where('user_id', auth()->user()->id)->delete();
+
+            // setting midtrans
+            // use Midtrans\Config;
+            // use Midtrans\Snap;
+            Config::$serverKey = config('services.midtrans.server_key');
+            Config::$clientKey = config('services.midtrans.client_key');
+            Config::$isProduction = config('services.midtrans.is_production');
+            Config::$isSanitized = config('services.midtrans.isSanitized');
+            Config::$is3ds = config('services.midtrans.is3ds');
+
+            // setup variabel for midtrans
+            $midtrans = [
+                'transaction_details' => [
+                    'order_id' => 'ilham' . $transaction->id,
+                    'gross_amount' => (int) $transaction->total_price
+                ],
+                'custumer_details' => [
+                    'first_name' => $transaction->name,
+                    'email' => $transaction->email,
+                    'phone' => $transaction->phone,
+                ],
+                'enable_payments' => ['gopay', 'bank_transfer'],
+                'vtweb' => []
+            ];
+
+            // create payment url from midtrans
+            $paymentUrl = Snap::createTransaction($midtrans)->redirect_url;
+
+            // update payment url
+            $transaction->update([
+                'payment_url' => $paymentUrl
+            ]);
+
+            return redirect($paymentUrl);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
             return redirect()->back();
         }
     }

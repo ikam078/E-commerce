@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable =[
-        'users_id',
+    
+    protected $fillable = [
+        'user_id',
         'name',
         'email',
         'phone',
@@ -21,11 +22,13 @@ class Transaction extends Model
         'total_price'
     ];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function transaction_item(){
+    public function transaction_item()
+    {
         return $this->hasMany(TransactionItem::class);
     }
 }
