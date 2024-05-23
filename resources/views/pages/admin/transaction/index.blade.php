@@ -31,6 +31,7 @@
                         <td>Email</td>
                         <td>Phone</td>
                         <td>Total Price</td>
+                        <td>Payment url</td>
                         <td>Status</td>
                         <td>Action</td>
                     </tr>
@@ -39,11 +40,11 @@
                     @forelse ($transaction as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ auth()->user()->name }}</td>
+                            <td>{{$row->user->name }}</td>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
-                            <td>{{ $row->total_price }}</td>
+                            <td>{{ number_format($row->total_price) }}</td>
                             <td>
                                 @if ($row->status == 'EXPIRED')
                                     <span class="badge bg-danger text-uppercase">Expired</span>
@@ -54,6 +55,13 @@
                                 @else
                                     <span class="badge bg-primary text-uppercase">Success</span>
                                 @endif
+                            </td>
+                            <td>
+                                {{-- @if ($row->payment_url == 'null')
+                                    <span>Null</span>
+                                @elseif()
+                                <a href="{{ $row->payment_url }}" target="_blank" class="btn btn-sm btn-primary">View</a>
+                                @endif --}}
                             </td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"

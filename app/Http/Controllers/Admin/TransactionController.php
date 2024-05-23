@@ -13,7 +13,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::with('user')->select('id', 'user_id', 'name', 'email', 'phone', 'status', 'payment', 'payment_url')->latest()->get();
+        $transaction = Transaction::with('user')->select('id', 'user_id', 'name', 'email', 'phone', 'courier', 'status', 'payment', 'payment_url', 'address', 'total_price')->latest()->get();
         return view('pages.admin.transaction.index', compact(
             'transaction'
         ));

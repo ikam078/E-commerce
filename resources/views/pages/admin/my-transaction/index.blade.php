@@ -10,7 +10,11 @@
 
             <nav>
                 <ol class="breadcrumb">
+                    @if (Auth::user()->role == 'admin')
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                    @else
+                    <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                    @endif
                     <li class="breadcrumb-item"><a href="#">Transaction</a></li>
                     <li class="breadcrumb-item active">MyTransaction</li>
                 </ol>
@@ -39,7 +43,7 @@
                     @forelse ($myTransaction as $row)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ auth()->user()->name }}</td>
+                            <td>{{ $row->user->name }}</td>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
@@ -54,7 +58,7 @@
                                     <span class="badge bg-primary text-uppercase">Success</span>
                                 @endif
                             </td>
-                            <td>{{ $row->total_price }}</td>
+                            <td>IDR {{ number_format($row->total_price) }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">
