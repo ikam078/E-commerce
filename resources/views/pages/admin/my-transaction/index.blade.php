@@ -60,11 +60,18 @@
                             </td>
                             <td>IDR {{ number_format($row->total_price) }}</td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                @if (Auth::user()->role == 'admin')
+                                    <a href="{{ route('admin.my-transaction.show', $row->name) }}" class="btn btn-info">
+                                    <i class="bi bi-eye"></i></a>
+                                @else
+                                <a href="{{ route('user.my-transaction.show', $row->name) }}" class="btn btn-info">
+                                    <i class="bi bi-eye"></i></a>
+                                @endif
+                                {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">
                                     <i class="bi bi-eye"></i>
                                 </button>
-                                @include('pages.admin.my-transaction.show-my-transaction')
+                                @include('pages.admin.my-transaction.show-my-transaction') --}}
                             </td>
                         </tr>
                     @empty
