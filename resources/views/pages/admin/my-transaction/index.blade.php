@@ -30,6 +30,7 @@
                         <td>Reciever Name</td>
                         <td>Email</td>
                         <td>Phone</td>
+                        <td>Status</td>
                         <td>Total Price</td>
                         <td>Action</td>
                     </tr>
@@ -42,6 +43,17 @@
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
+                            <td>
+                                @if ($row->status == 'EXPIRED')
+                                    <span class="badge bg-danger text-uppercase">Expired</span>
+                                @elseif ($row->status == 'PENDING')
+                                    <span class="badge bg-warning">Pending</span>
+                                @elseif ($row->status == 'SETTLEMENT')
+                                    <span class="badge bg-success text-uppercase">Settlement</span>
+                                @else
+                                    <span class="badge bg-primary text-uppercase">Success</span>
+                                @endif
+                            </td>
                             <td>{{ $row->total_price }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"

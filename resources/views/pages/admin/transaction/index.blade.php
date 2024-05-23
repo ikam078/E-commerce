@@ -34,7 +34,7 @@
                         <td>Status</td>
                         <td>Action</td>
                     </tr>
-                </thead>
+                </thead>    
                 <tbody>
                     @forelse ($transaction as $row)
                         <tr>
@@ -44,7 +44,17 @@
                             <td>{{ $row->email }}</td>
                             <td>{{ $row->phone }}</td>
                             <td>{{ $row->total_price }}</td>
-                            <td>{{ $row->status }}</td>
+                            <td>
+                                @if ($row->status == 'EXPIRED')
+                                    <span class="badge bg-danger text-uppercase">Expired</span>
+                                @elseif ($row->status == 'PENDING')
+                                    <span class="badge bg-warning">Pending</span>
+                                @elseif ($row->status == 'SETTLEMENT')
+                                    <span class="badge bg-success text-uppercase">Settlement</span>
+                                @else
+                                    <span class="badge bg-primary text-uppercase">Success</span>
+                                @endif
+                            </td>
                             <td>
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">
