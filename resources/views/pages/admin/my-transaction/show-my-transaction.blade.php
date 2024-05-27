@@ -14,7 +14,7 @@
                     <li class="list-group-item"><p>Payment : <strong>{{ $row->payment }}</strong></p></li>
                     <li class="list-group-item"><p>Payment url : <strong>{{ $row->payment_url }}</strong></p></li>
                     <li class="list-group-item"><p>Status : <strong>{{ $row->status }}</strong></p></li>
-                    <li class="list-group-item"><p>Total Price : <strong>{{ $row->total_price }}</strong></p></li>
+                    <li class="list-group-item"><p>Total Price : <strong>IDR {{ number_format($row->total_price) }}</strong></p></li>
                 </div>
             <div class="modal-footer">
                 <button type="button" class="bi bi-arrow-left btn btn-secondary" data-bs-dismiss="modal">Back</button>

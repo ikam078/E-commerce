@@ -11,9 +11,9 @@
             <nav>
                 <ol class="breadcrumb">
                     @if (Auth::user()->role == 'admin')
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                     @else
-                    <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                     @endif
                     <li class="breadcrumb-item"><a href="#">Transaction</a></li>
                     <li class="breadcrumb-item active">MyTransaction</li>
@@ -61,11 +61,13 @@
                             <td>IDR {{ number_format($row->total_price) }}</td>
                             <td>
                                 @if (Auth::user()->role == 'admin')
-                                    <a href="{{ route('admin.my-transaction.show', $row->name) }}" class="btn btn-info">
-                                    <i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('admin.my-transaction.showDataBySlugAndId', [$row->slug, $row->id]) }}"
+                                        class="btn btn-info">
+                                        <i class="bi bi-eye"></i></a>
                                 @else
-                                <a href="{{ route('user.my-transaction.show', $row->name) }}" class="btn btn-info">
-                                    <i class="bi bi-eye"></i></a>
+                                    <a href="{{ route('user.my-transaction.showDataBySlugAndId', [$row->slug, $row->id]) }}"
+                                        class="btn btn-info">
+                                        <i class="bi bi-eye"></i></a>
                                 @endif
                                 {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">

@@ -27,6 +27,7 @@
 
     <div class="section dashboard">
         <div class="row">
+
             <div class="col-md-4">
                 {{-- category card --}}
                 <div class="card info-card sales-card">
@@ -52,7 +53,7 @@
                         <h5 class="card-title">Product</h5>
                         <div class="d-flex align-items-center">
                             <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-cart-check-fill"></i>
+                                <i class="bi bi-basket3-fill"></i>
                             </div>
                             <div class="ps-3">
                                 <h6>{{ $product }}</h6>
