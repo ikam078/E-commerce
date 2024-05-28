@@ -13,7 +13,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::with('user')->select('id', 'user_id', 'name', 'email', 'phone', 'courier', 'status', 'payment', 'payment_url', 'address', 'total_price')->latest()->get();
+        $transaction = Transaction::with('user')->select('id', 'user_id', 'name', 'slug', 'email', 'phone', 'courier', 'status', 'payment', 'payment_url', 'address', 'total_price')->latest()->get();
         return view('pages.admin.transaction.index', compact(
             'transaction'
         ));
@@ -56,7 +56,20 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //get data transaction by  id
+        $transaction = Transaction::findOrFail($id);
+
+        try {
+            //update status transaction
+            $transaction->update([
+                'status' => $request->status
+                ]);
+
+                return redirect()->route('admin.transaction.index')->with('success', 'Status berhasil diubah');
+        } catch (\Exception $e) {
+            // dd($e->getMessage());
+            return redirect()->route('admin.transaction.index')->with('error', 'Status gagal diubah');
+        }
     }
 
     /**
@@ -65,5 +78,16 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showTransactionUserByAdminWithSlugAndId($slug, $id)
+    {
+        $transaction = Transaction::where('slug', $slug)->where('id', $id)->first();
+        
+        // dd($transaction);
+
+        return view('pages.admin.transaction.show', compact(
+            'transaction'
+        ));
     }
 }

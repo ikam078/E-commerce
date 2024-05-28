@@ -6,7 +6,7 @@
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">My Transaction</h5>
+            <h5 class="card-title">Transaction</h5>
 
             <nav>
                 <ol class="breadcrumb">
@@ -25,15 +25,15 @@
             <table class="table table-striped table-hover table-bordered datatable">
                 <thead>
                     <tr>
-                        <td>No</td>
-                        <td>Name Account</td>
-                        <td>Reciever Name</td>
-                        <td>Email</td>
-                        <td>Phone</td>
-                        <td>Total Price</td>
-                        <td>Payment url</td>
-                        <td>Status</td>
-                        <td>Action</td>
+                        <th>No</th>
+                        <th>Name Account</th>
+                        <th>Reciever Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Total Price</th>
+                        <th>Payment url</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,8 +49,7 @@
                                 @if ($row->payment_url == 'null')
                                     <span>Null</span>
                                 @else
-                                    <a href="{{ $row->payment_url }}" target="_blank"
-                                        class="btn btn-sm btn-primary">View</a>
+                                    <a href="{{ $row->payment_url }}" target="_blank">Payment URL</a>
                                 @endif
                             </td>
                             <td>
@@ -65,11 +64,13 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                <a href="{{ route('admin.transaction.showTransactionUserByAdminWithSlugAndId', [$row->slug, $row->id]) }}" class="btn btn-info btn-sm mx-2">Show</a>
+
+                                <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal"
                                     data-bs-target="#modalshowtransaction{{ $row->id }}">
-                                    <i class="bi bi-eye"></i>
+                                    Edit
                                 </button>
-                                @include('pages.admin.my-transaction.show-my-transaction')
+                                @include('pages.admin.transaction.modal-edit')
                             </td>
                         </tr>
                     @empty
